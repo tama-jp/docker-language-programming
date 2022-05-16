@@ -1,0 +1,15 @@
+FROM ubuntu:22.10
+
+# 作業ディレクトリを /works にする
+WORKDIR /works
+
+# 初期設定
+RUN apt update -y
+
+# ■ c++言語
+COPY scripts/install-tools-cpp.sh /works/scripts/install-tools-cpp.sh
+RUN bash /works/scripts/install-tools-cpp.sh
+
+WORKDIR /works/app
+
+ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]

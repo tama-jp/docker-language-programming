@@ -1,0 +1,18 @@
+FROM ubuntu:22.10
+
+# 作業ディレクトリを /works にする
+WORKDIR /works
+
+# 初期設定
+RUN apt update -y
+
+# ■ Python3言語
+ENV PYTHONVERSION 3.10.4
+ENV PYTHONVERSIONBIN 3.10
+
+COPY scripts/install-tools-python3.sh /works/scripts/install-tools-python3.sh
+RUN bash /works/scripts/install-tools-python3.sh
+
+WORKDIR /works/app
+
+ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]

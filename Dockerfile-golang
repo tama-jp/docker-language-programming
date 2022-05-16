@@ -1,0 +1,22 @@
+FROM ubuntu:22.10
+
+# 作業ディレクトリを /works にする
+WORKDIR /works
+
+# 初期設定
+RUN apt update -y
+
+# ■ go言語
+ENV GOVERSION 1.18.2
+ENV ARCH amd64
+ENV HOME /root
+ENV PATH $PATH:/usr/local/go/bin
+ENV GOPATH $HOME/work
+ENV PATH $GOPATH/bin:$PATH
+
+COPY scripts/install-tools-golang.sh /works/scripts/install-tools-golang.sh
+RUN bash /works/scripts/install-tools-golang.sh
+
+WORKDIR /works/app
+
+ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]

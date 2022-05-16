@@ -1,0 +1,16 @@
+FROM ubuntu:22.10
+
+# 作業ディレクトリを /works にする
+WORKDIR /works
+
+# 初期設定
+RUN apt update -y
+
+# ■ Node.js言語
+ENV NODEJS_VERSION 18
+COPY scripts/install-tools-nodejs.sh /works/scripts/install-tools-nodejs.sh
+RUN bash /works/scripts/install-tools-nodejs.sh
+
+WORKDIR /works/app
+
+ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]

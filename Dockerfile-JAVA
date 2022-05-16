@@ -1,0 +1,16 @@
+FROM ubuntu:22.10
+
+# 作業ディレクトリを /works にする
+WORKDIR /works
+
+# 初期設定
+RUN apt update -y
+
+# ■ JAVA
+ENV JAVA_VERSION 11
+COPY scripts/install-tools-java.sh /works/scripts/install-tools-java.sh
+RUN bash /works/scripts/install-tools-java.sh
+
+WORKDIR /works/app
+
+ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]
