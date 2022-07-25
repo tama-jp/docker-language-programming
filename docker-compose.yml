@@ -15,131 +15,117 @@ services:
     volumes:
       - ./data/golang/app:/works/app
     ports:
+      - "8081:8080"
+
+# ---------------------------------------------------
+#  python3
+# tag: v-p-YYYYMMDDhhmm-px_x_x
+# ---------------------------------------------------
+  python3:
+    container_name: "python3"
+    build:
+      context: .
+      dockerfile: Dockerfile-Python3
+    volumes:
+      - ./data/python3/app:/works/app
+    ports:
       - "8082:8080"
 
-#  # ---------------------------------------------------
-#  #  python3
-#  # tag: v-p-YYYYMMDDhhmm-px_x_x
-#  # ---------------------------------------------------
-#  python3:
-#    container_name: "python3"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-Python3
-#    volumes:
-#      - ./data/python3/app:/works/app
-#    ports:
-#      - "8083:8080"
-#
-#  # ---------------------------------------------------
-#  #  nodejs
-#  # tag: v-n-YYYYMMDDhhmm
-#  # ---------------------------------------------------
-#  nodejs:
-#    container_name: "nodejs"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-Nodejs
-#    volumes:
-#      - ./data/nodejs/app:/works/app
-#    ports:
-#      - "8084:8080"
-#
-#  # ---------------------------------------------------
-#  #  java
-#  # tag: v-j-YYYYMMDDhhmm-java
-#  # ---------------------------------------------------
-#  java:
-#    container_name: "java"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-JAVA
-#    volumes:
-#      - ./data/JAVA/app:/works/app
-#    ports:
-#      - "8083:8080"
-#
-#  # ---------------------------------------------------
-#  #  cpp
-#  # tag: v-c-YYYYMMDDhhmm
-#  # ---------------------------------------------------
-#  cpp:
-#    container_name: "cpp"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-cpp
-#    volumes:
-#      - ./data/cpp/app:/works/app
-#    ports:
-#      - "8087:8080"
-#
-#  # ---------------------------------------------------
-#  #  golang-python3
-#  # tag: v-gp-YYYYMMDDhhmm
-#  # ---------------------------------------------------
-#  golang-python3:
-#    container_name: "golang-python3"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-golang-Python3
-#    volumes:
-#      - ./data/golang-python3/app:/works/app
-#    ports:
-#      - "8085:8080"
-#
-#  # ---------------------------------------------------
-#  #  golang-python-nodejs
-#  # tag: v-gpn-YYYYMMDDhhmm
-#  # ---------------------------------------------------
-#  golang-python-nodejs:
-#    container_name: "golang-python-nodejs"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-golang-Python3-Nodejs
-#    volumes:
-#      - ./data/golang-python-nodejs/app:/works/app
-#    ports:
-#      - "8086:8080"
-#
-#  # ---------------------------------------------------
-#  #  go-python-node-java
-#  # tag: v-gpnj-YYYYMMDDhhmm
-#  # ---------------------------------------------------
-#  golang-python-node-java:
-#    container_name: "golang-python-node-java"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-golang-Python3-Nodejs-JAVA
-#    volumes:
-#      - ./data/golang-python-node-java/app:/works/app
-#    ports:
-#      - "8086:8080"
-#
-#  # ---------------------------------------------------
-#  #  go-python-node-java-cpp
-#  # tag: v-gpnj-YYYYMMDDhhmm
-#  # ---------------------------------------------------
-#  golang-python-node-java-cpp:
-#    container_name: "golang-python-node-java-cpp"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-golang-Python3-Nodejs-JAVA-cpp
-#    volumes:
-#      - ./data/golang-python-node-java-cpp/app:/works/app
-#    ports:
-#      - "8086:8080"
-#
-#  # ---------------------------------------------------
-#  #  golang-python-nodejs-cpp
-#  # tag: v-gpnc-YYYYMMDDhhmm
-#  # ---------------------------------------------------
-#  golang-python-nodejs-cpp:
-#    container_name: "golang-python-nodejs-cpp"
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-golang-Python3-Nodejs-JAVA
-#    volumes:
-#      - ./data/golang-python-nodejs-cpp/app:/works/app
-#    ports:
-#      - "8086:8080"
-#
+# ---------------------------------------------------
+#  nodejs
+# tag: v-n-YYYYMMDDhhmm
+# ---------------------------------------------------
+  nodejs:
+    container_name: "nodejs"
+    build:
+      context: .
+      dockerfile: Dockerfile-Nodejs
+    volumes:
+      - ./data/nodejs/app:/works/app
+    ports:
+      - "8083:8080"
+
+# ---------------------------------------------------
+#  java
+# tag: v-j-YYYYMMDDhhmm-java
+# ---------------------------------------------------
+  java:
+    container_name: "java"
+    build:
+      context: .
+      dockerfile: Dockerfile-JAVA
+    volumes:
+      - ./data/JAVA/app:/works/app
+    ports:
+      - "8084:8080"
+
+# ---------------------------------------------------
+#  clang
+# tag: v-c-YYYYMMDDhhmm
+# ---------------------------------------------------
+  clang:
+    container_name: "clang"
+    build:
+      context: .
+      dockerfile: Dockerfile-clang
+    volumes:
+      - ./data/cpp/app:/works/app
+    ports:
+      - "8085:8080"
+
+# ---------------------------------------------------
+#  golang-python3
+# tag: v-gp-YYYYMMDDhhmm
+# ---------------------------------------------------
+  golang-python3:
+    container_name: "golang-python3"
+    build:
+      context: .
+      dockerfile: Dockerfile-golang-Python3
+    volumes:
+      - ./data/golang-python3/app:/works/app
+    ports:
+      - "8086:8080"
+
+# ---------------------------------------------------
+#  golang-python3-nodejs
+# tag: v-gpn-YYYYMMDDhhmm
+# ---------------------------------------------------
+  golang-python3-nodejs:
+    container_name: "golang-python3-nodejs"
+    build:
+      context: .
+      dockerfile: Dockerfile-golang-Python3-Nodejs
+    volumes:
+      - ./data/golang-python3-nodejs/app:/works/app
+    ports:
+      - "8087:8080"
+
+# ---------------------------------------------------
+#  golang-python3-node-java
+# tag: v-gpnj-YYYYMMDDhhmm
+# ---------------------------------------------------
+  golang-python3-nodejs-java:
+    container_name: "golang-python3-nodejs-java"
+    build:
+      context: .
+      dockerfile: Dockerfile-golang-Python3-Nodejs-JAVA
+    volumes:
+      - ./data/golang-python-node-java/app:/works/app
+    ports:
+      - "8088:8080"
+
+# ---------------------------------------------------
+#  golang-python3-node-java-clang
+# tag: v-gpnj-YYYYMMDDhhmm
+# ---------------------------------------------------
+  golang-python3-nodejs-java-clang:
+    container_name: "golang-python3-nodejs-java-clang"
+    build:
+      context: .
+      dockerfile: Dockerfile-golang-Python3-Nodejs-JAVA-clang
+    volumes:
+      - ./data/golang-python-node-java-cpp/app:/works/app
+    ports:
+      - "8009:8080"
+

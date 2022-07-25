@@ -1,4 +1,4 @@
-FROM ubuntu:22.10
+FROM ubuntu:22.04
 
 # 作業ディレクトリを /works にする
 WORKDIR /works
@@ -7,7 +7,7 @@ WORKDIR /works
 RUN apt update -y
 
 # ■ go言語
-ENV GOVERSION 1.18.2
+ENV GOVERSION 1.18.4
 ENV ARCH amd64
 ENV HOME /root
 ENV PATH $PATH:/usr/local/go/bin

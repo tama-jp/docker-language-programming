@@ -1,4 +1,4 @@
-FROM ubuntu:22.10
+FROM ubuntu:22.04
 
 # 作業ディレクトリを /works にする
 WORKDIR /works
@@ -7,8 +7,8 @@ WORKDIR /works
 RUN apt update -y
 
 # ■ c++言語
-COPY scripts/install-tools-cpp.sh /works/scripts/install-tools-cpp.sh
-RUN bash /works/scripts/install-tools-cpp.sh
+COPY scripts/install-tools-clang.sh /works/scripts/install-tools-clang.sh
+RUN bash /works/scripts/install-tools-clang.sh
 
 WORKDIR /works/app
 
