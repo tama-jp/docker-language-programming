@@ -7,7 +7,7 @@ WORKDIR /works
 RUN apt update -y
 
 # ■ go言語
-ENV GOVERSION 1.18.4
+ENV GOVERSION 1.19
 ENV ARCH amd64
 ENV HOME /root
 ENV PATH $PATH:/usr/local/go/bin

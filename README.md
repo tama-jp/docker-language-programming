@@ -3,24 +3,25 @@
 
 | 言語      | バージョン  |
 |---------|--------|
-| Go言語    | 1.18.4 |
-| Python3 | 3.10.5 |
+| Go言語    | 1.19   |
+| Python3 | 3.10.6 |
 | Java    | 11     |
 | Clang   | 14     |
 
 タグ一覧
 
-| 内容                                    | バージョン                                                         |
-|---------------------------------------|---------------------------------------------------------------|
-| golang                                | v-g-202207251900-g1.18.4                                      |
-| Python3                               | v-p-202207251900-p3.10.5                                      |
-| Node.js                               | v-n-202207251900-n18.6.0                                      |
-| Java                                  | v-j-202207251900-j11.0.15                                     |
-| Clang                                 | v-c-202207251900-clang14                                      |
-| go + Python3                          | v-gp-202207251900-g1.18.4-p3.10.5                             |
-| go + Python3 + Node.js                | v-gpn-202207251900-g1.18.4-p3.10.5-n18.6.0                    |
-| go + Python3 + Node.js + Java         | v-gpnj-202207251900-g1.18.4-p3.10.5-n18.6.0-j11.0.15          |
-| go + Python3 + Node.js + Java + Clang | v-gpnjc-202207251900-g1.18.4-p3.10.5-n18.6.0-j11.0.15-clang14 |
+| 内容                                    | バージョン                                                       |
+|---------------------------------------|-------------------------------------------------------------|
+| golang                                | v-g-202207251900-g1.19                                      |
+| Python3                               | v-p-202207251900-p3.10.6                                    |
+| Node.js                               | v-n-202207251900-n18.7.0                                    |
+| Java                                  | v-j-202207251900-j11.0.16                                   |
+| Clang                                 | v-c-202207251900-clang14                                    |
+| go + Python3                          | v-gp-202207251900-g1.19-p3.10.6                             |
+| go + Python3 + Java                   | v-gpnj-202207251900-g1.19-p3.10.6-j11.0.16                  |
+| go + Python3 + Node.js                | v-gpn-202207251900-g1.19-p3.10.6-n18.7.0                    |
+| go + Python3 + Node.js + Java         | v-gpnj-202207251900-g1.19-p3.10.6-n18.7.0-j11.0.16          |
+| go + Python3 + Node.js + Java + Clang | v-gpnjc-202207251900-g1.19-p3.10.6-n18.7.0-j11.0.16-clang14 |
 
 
 | 内容                                    | DockerComposeでのテスト                                         |
@@ -31,6 +32,7 @@
 | Java                                  | docker-compose up --build java                             |
 | Clang                                 | docker-compose up --build clang                            |
 | go + Python3                          | docker-compose up --build golang-python3                   |
+| go + Python3 + Java                   | docker-compose up --build golang-python3-java              |
 | go + Python3 + Node.js                | docker-compose up --build golang-python3-nodejs            |
 | go + Python3 + Node.js + Java         | docker-compose up --build golang-python3-nodejs-java       |
 | go + Python3 + Node.js + Java + Clang | docker-compose up --build golang-python3-nodejs-java-clang |
@@ -44,6 +46,7 @@
 | Java                                  | docker-compose exec java /bin/sh                             |
 | Clang                                 | docker-compose exec clang /bin/sh                            |
 | go + Python3                          | docker-compose exec golang-python3 /bin/sh                   |
+| go + Python3 + Java                   | docker-compose exec golang-python3-java /bin/sh              |
 | go + Python3 + Node.js                | docker-compose exec golang-python3-nodejs /bin/sh            |
 | go + Python3 + Node.js + Java         | docker-compose exec golang-python3-nodejs-java /bin/sh       |
 | go + Python3 + Node.js + Java + Clang | docker-compose exec golang-python3-nodejs-java-clang /bin/sh |

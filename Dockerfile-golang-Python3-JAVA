@@ -24,10 +24,11 @@ ENV PYTHONVERSIONBIN 3.10
 COPY scripts/install-tools-python3.sh /works/scripts/install-tools-python3.sh
 RUN bash /works/scripts/install-tools-python3.sh
 
-# ■ Node.js言語
-ENV NODEJS_VERSION 18.7.0
-COPY scripts/install-tools-nodejs.sh /works/scripts/install-tools-nodejs.sh
-RUN bash /works/scripts/install-tools-nodejs.sh
+# ■ JAVA
+ENV JAVA_VERSION 11
+
+COPY scripts/install-tools-java.sh /works/scripts/install-tools-java.sh
+RUN bash /works/scripts/install-tools-java.sh
 
 WORKDIR /works/app
 
