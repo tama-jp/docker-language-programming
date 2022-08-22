@@ -18,7 +18,7 @@
 | Java                                  | v-j-202208221400-j11.0.16                                   |
 | Clang                                 | v-c-202208221400-clang14                                    |
 | go + Python3                          | v-gp-202208221400-g1.19-p3.10.6                             |
-| go + Python3 + Java                   | v-gpnj-202208221400-g1.19-p3.10.6-j11.0.16                  |
+| go + Python3 + Java                   | v-gpj-202208221400-g1.19-p3.10.6-j11.0.16                   |
 | go + Python3 + Node.js                | v-gpn-202208221400-g1.19-p3.10.6-n18.7.0                    |
 | go + Python3 + Node.js + Java         | v-gpnj-202208221400-g1.19-p3.10.6-n18.7.0-j11.0.16          |
 | go + Python3 + Node.js + Java + Clang | v-gpnjc-202208221400-g1.19-p3.10.6-n18.7.0-j11.0.16-clang14 |
