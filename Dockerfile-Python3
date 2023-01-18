@@ -7,8 +7,8 @@ WORKDIR /works
 RUN apt update -y
 
 # ■ Python3言語
-ENV PYTHONVERSION 3.10.6
-ENV PYTHONVERSIONBIN 3.10
+ENV PYTHONVERSION 3.11.1
+ENV PYTHONVERSIONBIN 3.11
 
 COPY scripts/install-tools-python3.sh /works/scripts/install-tools-python3.sh
 RUN bash /works/scripts/install-tools-python3.sh

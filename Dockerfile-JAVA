@@ -7,7 +7,7 @@ WORKDIR /works
 RUN apt update -y
 
 # ■ JAVA
-ENV JAVA_VERSION 11
+ENV JAVA_VERSION 19
 COPY scripts/install-tools-java.sh /works/scripts/install-tools-java.sh
 RUN bash /works/scripts/install-tools-java.sh
 

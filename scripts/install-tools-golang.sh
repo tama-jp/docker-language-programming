@@ -14,7 +14,7 @@ export PATH=$PATH:${GOPATH}/bin
 
 cd /usr/local
 apt install -y curl
-curl -s -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go$GOVERSION.linux-$ARCH.tar.gz && \
+curl -s -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSION}.linux-$ARCH.tar.gz && \
     tar xvf /tmp/go.tar.gz && \
     rm /tmp/go.tar.gz
 

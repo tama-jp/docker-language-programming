@@ -18,14 +18,14 @@ COPY scripts/install-tools-golang.sh /works/scripts/install-tools-golang.sh
 RUN bash /works/scripts/install-tools-golang.sh
 
 # ■ Python3言語
-ENV PYTHONVERSION 3.11.1
-ENV PYTHONVERSIONBIN 3.11
+ENV PYTHONVERSION 3.10.6
+ENV PYTHONVERSIONBIN 3.10
 
 COPY scripts/install-tools-python3.sh /works/scripts/install-tools-python3.sh
 RUN bash /works/scripts/install-tools-python3.sh
 
 # ■ Node.js言語
-ENV NODEJS_VERSION 18
+ENV NODEJS_VERSION 18.7.0
 COPY scripts/install-tools-nodejs.sh /works/scripts/install-tools-nodejs.sh
 RUN bash /works/scripts/install-tools-nodejs.sh
 
@@ -38,6 +38,15 @@ RUN bash /works/scripts/install-tools-java.sh
 # ■ c++言語
 COPY scripts/install-tools-clang.sh /works/scripts/install-tools-clang.sh
 RUN bash /works/scripts/install-tools-clang.sh
+
+# ■ rust言語
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH \
+    RUSTVERSION=1.66.1
+
+COPY scripts/install-tools-rust.sh /works/scripts/install-tools-rust.sh
+RUN bash /works/scripts/install-tools-rust.sh
 
 WORKDIR /works/app
 

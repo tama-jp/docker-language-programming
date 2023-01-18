@@ -143,3 +143,17 @@ services:
       - ./data/golang-python-java/app:/works/app
     ports:
       - "8010:8080"
+
+  # ---------------------------------------------------
+  # rust
+  # tag: v-r-YYYYMMDDhhmm
+  # ---------------------------------------------------
+  rust:
+    container_name: "rust"
+    build:
+      context: .
+      dockerfile: Dockerfile-rust
+    volumes:
+      - ./data/rust/app:/works/app
+    ports:
+      - "8011:8080"
