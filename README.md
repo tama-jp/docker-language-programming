@@ -68,7 +68,6 @@
 
 docker-compose exec web /bin/sh
 
-
-
-
+clang
+https://e-penguiner.com/install-latest-clang/
 
