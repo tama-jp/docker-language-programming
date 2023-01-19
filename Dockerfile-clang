@@ -7,7 +7,7 @@ WORKDIR /works
 # 初期設定
 RUN apt update -y
 
-# ■ c++言語
+# ■ clang
 COPY scripts/install-tools-debian-bullseye-clang15.sh /works/scripts/install-tools-clang.sh
 RUN bash /works/scripts/install-tools-clang.sh
 

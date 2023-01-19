@@ -31,8 +31,7 @@ COPY scripts/install-tools-nodejs.sh /works/scripts/install-tools-nodejs.sh
 RUN bash /works/scripts/install-tools-nodejs.sh
 
 # ■ JAVA
-ENV JAVA_VERSION 11
-
+ENV JAVA_VERSION 17
 COPY scripts/install-tools-java.sh /works/scripts/install-tools-java.sh
 RUN bash /works/scripts/install-tools-java.sh
 
