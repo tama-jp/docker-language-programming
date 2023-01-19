@@ -1,4 +1,5 @@
-FROM ubuntu:22.04
+FROM debian:bullseye-20230109-slim
+#FROM ubuntu:22.04
 
 # 作業ディレクトリを /works にする
 WORKDIR /works

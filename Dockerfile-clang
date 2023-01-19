@@ -1,4 +1,5 @@
-FROM ubuntu:22.04
+FROM debian:bullseye-20230109-slim
+#FROM ubuntu:22.04
 
 # 作業ディレクトリを /works にする
 WORKDIR /works
@@ -7,7 +8,7 @@ WORKDIR /works
 RUN apt update -y
 
 # ■ c++言語
-COPY scripts/install-tools-clang.sh /works/scripts/install-tools-clang.sh
+COPY scripts/install-tools-debian-bullseye-clang15.sh /works/scripts/install-tools-clang.sh
 RUN bash /works/scripts/install-tools-clang.sh
 
 WORKDIR /works/app
