@@ -65,5 +65,4 @@ jobs:
           file: ${{ env.DOCKERFILE }}  # 選択したDockerfileを使用
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }}  # タグに基づく名前
-            ghcr.io/${{ github.repository }}:latest  # 最新バージョンとしてもプッシュ
+            ghcr.io/${{ github.repository }}:${{ github.ref_name }}
