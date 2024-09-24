@@ -1,5 +1,5 @@
 FROM debian:bullseye-20230703-slim
-#FROM ubuntu:22.04
+#FROM --platform=linux/amd64 debian:bullseye-20230703-slim
 
 # 作業ディレクトリを /works にする
 WORKDIR /works
@@ -8,8 +8,7 @@ WORKDIR /works
 RUN apt update -y
 
 # ■ go言語
-ENV GOVERSION 1.20.5
-ENV ARCH amd64
+ENV GOVERSION 1.23.1
 ENV HOME /root
 ENV PATH $PATH:/usr/local/go/bin
 ENV GOPATH $HOME/work

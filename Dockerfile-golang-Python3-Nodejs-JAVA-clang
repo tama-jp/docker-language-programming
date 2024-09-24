@@ -1,5 +1,6 @@
 FROM debian:bullseye-20230703-slim
-#FROM ubuntu:22.04
+#FROM --platform=linux/amd64 debian:bullseye-20230703-slim
+
 
 # 作業ディレクトリを /works にする
 WORKDIR /works
@@ -18,6 +19,7 @@ ENV PATH $GOPATH/bin:$PATH
 COPY scripts/install-tools-golang.sh /works/scripts/install-tools-golang.sh
 RUN bash /works/scripts/install-tools-golang.sh
 
+
 # ■ Python3言語
 ENV PYTHONVERSION 3.11.1
 ENV PYTHONVERSIONBIN 3.11
@@ -26,19 +28,25 @@ COPY scripts/install-tools-python3.sh /works/scripts/install-tools-python3.sh
 RUN bash /works/scripts/install-tools-python3.sh
 
 # ■ Node.js言語
-ENV NODEJS_VERSION 18
+ENV NODEJS_VERSION 20
 COPY scripts/install-tools-nodejs.sh /works/scripts/install-tools-nodejs.sh
 RUN bash /works/scripts/install-tools-nodejs.sh
 
 # ■ JAVA
-ENV JAVA_VERSION 11
+ENV JAVA_VERSION 23
 
-COPY scripts/install-tools-java.sh /works/scripts/install-tools-java.sh
+COPY scripts/install-tools-java23.sh /works/scripts/install-tools-java.sh
 RUN bash /works/scripts/install-tools-java.sh
 
+# Export Java environment variables globally
+ENV JAVA_HOME=/usr/java/jdk-${JAVA_VERSION}
+ENV PATH=$JAVA_HOME/bin:$PATH
+ENV CLASSPATH=.:$JAVA_HOME/jre/lib:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
+
 # ■ clang
-COPY scripts/install-tools-debian-bullseye-clang15.sh /works/scripts/install-tools-clang.sh
+COPY scripts/install-tools-debian-bullseye-clang16.sh /works/scripts/install-tools-clang.sh
 RUN bash /works/scripts/install-tools-clang.sh
+
 
 WORKDIR /works/app
 

@@ -1,5 +1,6 @@
 FROM debian:bullseye-20230703-slim
-#FROM ubuntu:22.04
+#FROM --platform=linux/amd64 debian:bullseye-20230703-slim
+
 
 # 作業ディレクトリを /works にする
 WORKDIR /works
@@ -26,9 +27,15 @@ COPY scripts/install-tools-python3.sh /works/scripts/install-tools-python3.sh
 RUN bash /works/scripts/install-tools-python3.sh
 
 # ■ JAVA
-ENV JAVA_VERSION 17
-COPY scripts/install-tools-java.sh /works/scripts/install-tools-java.sh
+ENV JAVA_VERSION 23
+
+COPY scripts/install-tools-java23.sh /works/scripts/install-tools-java.sh
 RUN bash /works/scripts/install-tools-java.sh
+
+# Export Java environment variables globally
+ENV JAVA_HOME=/usr/java/jdk-${JAVA_VERSION}
+ENV PATH=$JAVA_HOME/bin:$PATH
+ENV CLASSPATH=.:$JAVA_HOME/jre/lib:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
 
 WORKDIR /works/app
 

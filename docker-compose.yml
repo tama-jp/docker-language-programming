@@ -1,5 +1,5 @@
 # Compose fileのバージョン指定
-version: "3.7"
+#version: "3.7"
 
 # コンテンツ
 services:
@@ -131,6 +131,20 @@ services:
 
 
   # ---------------------------------------------------
+  #   golang-python3-nodejs-java-clang-rust
+  # tag: v-gpnj-YYYYMMDDhhmm
+  # ---------------------------------------------------
+  golang-python3-nodejs-java-clang-rust:
+    container_name: "golang-python3-nodejs-java-clang-rust"
+    build:
+      context: .
+      dockerfile: Dockerfile-golang-Python3-Nodejs-JAVA-clang-rust
+    volumes:
+      - ./data/golang-Python3-Nodejs-JAVA-clang-rust/app:/works/app
+    ports:
+      - "8010:8080"
+
+  # ---------------------------------------------------
   #  golang-python3-java
   # tag: v-gpj-YYYYMMDDhhmm
   # ---------------------------------------------------
@@ -142,7 +156,7 @@ services:
     volumes:
       - ./data/golang-python-java/app:/works/app
     ports:
-      - "8010:8080"
+      - "8011:8080"
 
   # ---------------------------------------------------
   # rust
@@ -156,4 +170,4 @@ services:
     volumes:
       - ./data/rust/app:/works/app
     ports:
-      - "8011:8080"
+      - "8012:8080"

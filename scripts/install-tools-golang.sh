@@ -14,9 +14,22 @@ export PATH=$PATH:${GOPATH}/bin
 
 cd /usr/local
 apt install -y curl
-curl -s -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSION}.linux-$ARCH.tar.gz && \
-    tar xvf /tmp/go.tar.gz && \
-    rm /tmp/go.tar.gz
+
+ARCH=$(uname -m)
+
+if [ "$ARCH" = "x86_64" ]; then
+    echo "This is an x86_64 architecture."
+    curl -s -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar.gz && \
+        tar xvf /tmp/go.tar.gz && \
+        rm /tmp/go.tar.gz
+elif [ "$ARCH" = "aarch64" ]; then
+    echo "This is an ARM (aarch64) architecture."
+    curl -s -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSION}.linux-arm64.tar.gz && \
+        tar xvf /tmp/go.tar.gz && \
+        rm /tmp/go.tar.gz
+else
+    echo "Unknown architecture: $ARCH"
+fi
 
 #go get -u -v github.com/ramya-rao-a/go-outline
 #go get -u -v github.com/acroca/go-symbols
