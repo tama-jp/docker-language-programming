@@ -1,0 +1,69 @@
+name: Build and Push Docker Images Based on Tags
+
+on:
+  push:
+    tags:
+      - 'v-*'  # タグが "v-" で始まるプッシュイベントをトリガーに設定
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Ubuntu最新バージョンでジョブを実行
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # リポジトリのコードをチェックアウト
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2  # Docker Buildxをセットアップ
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}  # GitHubアクター（ユーザー名）
+          password: ${{ secrets.GITHUB_TOKEN }}  # GitHubが提供する自動シークレット
+
+      - name: Determine Dockerfile based on Tag
+        id: dockerfile
+        run: |
+          TAG=${{ github.ref_name }}
+          DOCKERFILE=""
+          if [[ "$TAG" == v-j-* ]]; then
+            DOCKERFILE="Dockerfile-JAVA"
+          elif [[ "$TAG" == v-n-* ]]; then
+            DOCKERFILE="Dockerfile-Nodejs"
+          elif [[ "$TAG" == v-p-* ]]; then
+            DOCKERFILE="Dockerfile-Python3"
+          elif [[ "$TAG" == v-c-* ]]; then
+            DOCKERFILE="Dockerfile-clang"
+          elif [[ "$TAG" == v-g-* ]]; then
+            DOCKERFILE="Dockerfile-golang"
+          elif [[ "$TAG" == v-r-* ]]; then
+            DOCKERFILE="Dockerfile-rust"
+          elif [[ "$TAG" == v-gp-* ]]; then
+            DOCKERFILE="Dockerfile-golang-Python3"
+          elif [[ "$TAG" == v-gpj-* ]]; then
+            DOCKERFILE="Dockerfile-golang-Python3-JAVA"
+          elif [[ "$TAG" == v-gpn-* ]]; then
+            DOCKERFILE="Dockerfile-golang-Python3-Nodejs"
+          elif [[ "$TAG" == v-gpnj-* ]]; then
+            DOCKERFILE="Dockerfile-golang-Python3-Nodejs-JAVA"
+          elif [[ "$TAG" == v-gpnjc-* ]]; then
+            DOCKERFILE="Dockerfile-golang-Python3-Nodejs-JAVA-clang"
+          elif [[ "$TAG" == v-gpnjcr-* ]]; then
+            DOCKERFILE="Dockerfile-golang-Python3-Nodejs-JAVA-clang-rust"
+          else
+            echo "No matching Dockerfile for the tag $TAG"
+            exit 1
+          fi
+          echo "DOCKERFILE=$DOCKERFILE" >> $GITHUB_ENV  # GITHUB_ENVに設定
+
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{ env.DOCKERFILE }}  # 選択したDockerfileを使用
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ github.ref_name }}  # タグに基づく名前
+            ghcr.io/${{ github.repository }}:latest  # 最新バージョンとしてもプッシュ
