@@ -5,6 +5,10 @@ on:
     tags:
       - 'v-*'  # タグが "v-" で始まるプッシュイベントをトリガーに設定
 
+permissions:
+  contents: read
+  packages: write  # パッケージへの書き込み権限を付与
+
 jobs:
   build:
     runs-on: ubuntu-latest  # Ubuntu最新バージョンでジョブを実行
@@ -64,5 +68,8 @@ jobs:
           context: .
           file: ${{ env.DOCKERFILE }}  # 選択したDockerfileを使用
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}:${{ github.ref_name }}-arm
+#            ghcr.io/${{ github.repository }}:latest  # 最新バージョンとしてもプッシュ
