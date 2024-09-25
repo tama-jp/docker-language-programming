@@ -1,9 +1,9 @@
-name: Build and Push Docker Images Based on Tags
+name: Build and Push Multi-Arch Docker Images
 
 on:
   push:
     tags:
-      - 'v-*'  # タグが "v-" で始まるプッシュイベントをトリガーに設定
+      - 'v-*'
 
 permissions:
   contents: read
@@ -11,21 +11,21 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Ubuntu最新バージョンでジョブを実行
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  # リポジトリのコードをチェックアウト
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2  # Docker Buildxをセットアップ
+        uses: actions/checkout@v2
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}  # GitHubアクター（ユーザー名）
-          password: ${{ secrets.GITHUB_TOKEN }}  # GitHubが提供する自動シークレット
+          username: ${{ github.actor }}  # GitHubユーザー名（自動で取得）
+          password: ${{ secrets.GITHUB_TOKEN }}  # GITHUB_TOKENを使用
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
       - name: Determine Dockerfile based on Tag
         id: dockerfile
@@ -60,16 +60,16 @@ jobs:
             echo "No matching Dockerfile for the tag $TAG"
             exit 1
           fi
-          echo "DOCKERFILE=$DOCKERFILE" >> $GITHUB_ENV  # GITHUB_ENVに設定
+          echo "DOCKERFILE=$DOCKERFILE" >> $GITHUB_ENV
 
-      - name: Build and Push Docker image
+      - name: Build and Push Multi-Arch Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ${{ env.DOCKERFILE }}  # 選択したDockerfileを使用
+          file: ${{ env.DOCKERFILE }}
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/${{ github.repository }}:${{ github.ref_name }}
             ghcr.io/${{ github.repository }}:${{ github.ref_name }}-arm
-#            ghcr.io/${{ github.repository }}:latest  # 最新バージョンとしてもプッシュ
+#            ghcr.io/${{ github.repository }}:latest
